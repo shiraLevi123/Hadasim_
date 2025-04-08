@@ -1,0 +1,62 @@
+<h2>רישום ספק</h2>
+
+<form [formGroup]="registerForm">
+  <div>
+    <input type="text" formControlName="companyName" placeholder="שם ספק" required>
+    @if(registerForm.get('companyName')?.invalid && registerForm.get('companyName')?.touched)
+    {
+    <div class="error-message">יש להזין שם חברה</div>
+    }
+  </div>
+
+  <div>
+    <input type="text" formControlName="phone" placeholder="מספר טלפון" required>
+    @if(registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched)
+    {
+    <div class="error-message">יש להזין טלפון</div>
+    }
+  </div>
+
+  <div>
+    <input type="text" formControlName="agentName" placeholder="שם נציג" required>
+    @if(registerForm.get('agentName')?.invalid && registerForm.get('agentName')?.touched)
+    {
+    <div class="error-message">יש להזין שם נציג</div>
+    }
+  </div>
+
+  <div>
+    <input type="password" formControlName="password" placeholder="סיסמה" required>
+    @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched)
+    {
+    <div class="error-message">יש להזין סיסמא</div>
+    }
+  </div>
+  <div formArrayName="products">
+    <div *ngFor="let product of products.controls; let i = index" [formGroupName]="i">
+      <h4>מוצר {{ i + 1 }}</h4>
+      <div>
+        <input type="text" formControlName="productName" placeholder="שם מוצר" required>
+        @if(product.get('productName')?.invalid && product.get('productName')?.touched) {
+          <div class="error-message">יש להזין שם מוצר</div>
+        }
+      </div>
+      <div>
+        <input type="number" formControlName="pricePerUnit" placeholder="מחיר" required>
+        @if(product.get('pricePerUnit')?.invalid && product.get('pricePerUnit')?.touched) {
+          <div class="error-message">יש להזין מחיר</div>
+        }
+      </div>
+      <div>
+        <input type="number" formControlName="minQuantity" placeholder="כמות מינימלית" required>
+        @if(product.get('minQuantity')?.invalid && product.get('minQuantity')?.touched) {
+          <div class="error-message">יש להזין כמות מינימלית</div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <button type="button" (click)="addProduct()">הוספת מוצר</button>
+  <button (click)="register()">הרשמה</button>
+</form>
+

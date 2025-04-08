@@ -1,0 +1,31 @@
+<h2>הזמנות</h2>
+<table>
+  <thead>
+    <tr>
+      <th>מזהה</th>
+      <th>תאריך</th>
+      <th>סטטוס</th>
+      <th>מוצרים</th>
+      <th>אשר</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.dateCreated | date:'dd/MM/yyyy' }}</td>
+      <td>{{ getStatus(order.status) }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let item of order.items">
+            {{ item.product.productName }} - {{ item.quantity }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button *ngIf="order.status === null" (click)="approve(order.id)">אשר</button>
+      </td>
+      
+      
+    </tr>
+  </tbody>
+</table>

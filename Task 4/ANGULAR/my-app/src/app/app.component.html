@@ -1,0 +1,23 @@
+<nav>
+  <div class="nav-buttons">
+    <div class="right-buttons">
+      @if(!isLoggedIn()){
+      <button routerLink="/login">התחבר</button>
+      <button routerLink="/register">הרשמה</button>
+      }
+      @if(isLoggedIn()){
+      <button routerLink="/order">הזמנות</button>
+      <button routerLink="/register">הרשמה</button>
+      }
+    </div>
+
+    @if(isLoggedIn()){
+    <div class="left-buttons">
+      <button (click)="logout()">התנתק</button>
+    </div>
+    }
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>

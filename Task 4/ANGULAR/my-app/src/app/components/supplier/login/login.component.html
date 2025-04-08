@@ -1,0 +1,27 @@
+<h2 class="text">התחברות</h2>
+
+<form [formGroup]="loginForm">
+    <div>
+        <input type="text" formControlName="companyName" placeholder="שם ספק"required>
+        @if(loginForm.get('companyName')?.invalid && loginForm.get('companyName')?.touched)
+        {
+        <div class="error-message">יש להזין שם חברה</div>
+
+        }
+        @if(wrongName) {
+        <small class="error">שם ספק זה לא קיים במערכת</small>
+        }
+    </div>
+
+    <div>
+        <input type="password" formControlName="password" placeholder="סיסמה" required>
+        @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched)
+        {
+        <div class="error-message">יש להזין סיסמא</div>
+        }
+
+    </div>
+</form>
+<div>
+    <button class="testbutton" (click)="login()">התחבר</button>
+</div>
